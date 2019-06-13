@@ -1,7 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"mancala/board"
+)
 
 func main() {
-	fmt.Println("manacala")
+	b := board.Board{}
+	b.Init()
+	fmt.Println(b.Print())
+	//fmt.Println("%+v", b)
+	b.Move(3)
+	fmt.Println(b.Print())
+	//fmt.Println("%+v", b)
+	b.Move(4)
+	fmt.Println(b.Print())
+	b.Move(9)
+	fmt.Println(b.Print())
+	// fmt.Println("%+v", b)
+	b.Move(6)
+	fmt.Println(b.Print())
+	b.Move(6)
+	fmt.Println(b.Print())
+	b.Move(5)
+	fmt.Println(b.Print())
+	b.Move(3)
+	// fmt.Println("%+v", b)
+	fmt.Println(b.Print())
 }
