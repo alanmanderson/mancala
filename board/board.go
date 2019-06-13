@@ -3,9 +3,11 @@ package board
 import (
 	"errors"
 	"fmt"
-	"strconv"
 	"strings"
 )
+
+// ErrInvalidMove returned when an invalid move is requested
+var ErrInvalidMove = errors.New("Invalid Move")
 
 // BoardSize is the number of pits in the board
 const BoardSize = 14
@@ -33,10 +35,8 @@ func (b *Board) Init() {
 
 // Move executes a move from that pit
 func (b *Board) Move(pit int) error {
-	fmt.Println("Move: " + strconv.Itoa(pit))
 	if !b.isValidPit(pit) {
-		fmt.Println("Invalid Move")
-		return errors.New("Invalid Move: " + string(pit))
+		return ErrInvalidMove
 	}
 	beads := b.pits[pit]
 	b.pits[pit] = 0
@@ -92,4 +92,8 @@ func (b Board) Print() string {
 	)
 	sb.WriteString(strings.Repeat("-", 43) + "\n")
 	return sb.String()
+}
+
+func (b Board) isEqual(cmp Board) bool {
+	return b.pits == cmp.pits && b.curPlayer == cmp.curPlayer
 }
