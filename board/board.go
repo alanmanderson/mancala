@@ -97,3 +97,38 @@ func (b Board) Print() string {
 func (b Board) isEqual(cmp Board) bool {
 	return b.pits == cmp.pits && b.curPlayer == cmp.curPlayer
 }
+
+//EndGame tells if the game is over
+func (b *Board) EndGame() {
+	for i := 0; i < BoardSize; i++ {
+		if i == b.p1Pit || i == b.p2Pit {
+			continue
+		}
+		if i < BoardSize/2 {
+			b.pits[b.p1Pit] += b.pits[i]
+		} else if i > BoardSize/2 {
+			b.pits[b.p2Pit] += b.pits[i]
+		}
+		b.pits[i] = 0
+	}
+}
+
+// IsGameOver checks if the game is over
+func (b Board) IsGameOver() bool {
+	isOver := true
+	for i := 1; i < 7; i++ {
+		if b.pits[i] > 0 {
+			isOver = false
+			break
+		}
+	}
+	if isOver {
+		return true
+	}
+	for i := 8; i < 14; i++ {
+		if b.pits[i] > 0 {
+			return false
+		}
+	}
+	return true
+}

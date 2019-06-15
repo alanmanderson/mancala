@@ -20,7 +20,7 @@ func TestInit(t *testing.T) {
 }
 
 func TestMove(t *testing.T) {
-	for _, testCase := range testCases {
+	for _, testCase := range moveTestCases {
 		err := testCase.board.Move(testCase.move)
 		if err != testCase.err {
 			t.Fatalf("FAIL: %s(%v)\nExpected: %q\nActual: %q",
@@ -29,6 +29,17 @@ func TestMove(t *testing.T) {
 		if !testCase.board.isEqual(testCase.expected) {
 			t.Fatalf("FAIL: %s\nExpected: %v\nActual: %v",
 				testCase.description, testCase.board, testCase.expected)
+		}
+		t.Logf("PASS: %s", testCase.description)
+	}
+}
+
+func TestIsGameOver(t *testing.T) {
+	for _, testCase := range isGameOverTestCases {
+		actual := testCase.board.IsGameOver()
+		if actual != testCase.expected {
+			t.Fatalf("FAIL: %s(%v)\nExpected: %t\nActual: %t",
+				testCase.description, testCase.board, testCase.expected, actual)
 		}
 		t.Logf("PASS: %s", testCase.description)
 	}

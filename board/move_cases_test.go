@@ -1,6 +1,6 @@
 package board
 
-var testCases = []struct {
+var moveTestCases = []struct {
 	description string
 	board       Board
 	move        int
