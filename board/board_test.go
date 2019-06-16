@@ -45,6 +45,18 @@ func TestIsGameOver(t *testing.T) {
 	}
 }
 
+func TestEndGame(t *testing.T) {
+	for _, testCase := range endGameTestCases {
+		testCase.board.EndGame()
+		testCase.board.Print()
+		if !testCase.board.isEqual(testCase.expected) {
+			t.Fatalf("FAIL: %s(%v)\nExpected: %q\nActual: %q",
+				testCase.description, testCase.board, testCase.expected, testCase.board)
+		}
+		t.Logf("PASS: %s", testCase.description)
+	}
+}
+
 // func BenchmarkMove(b *testing.B) {
 // 	for i := 0; i < b.N; i++ {
 // 		for _, test := range testCases {

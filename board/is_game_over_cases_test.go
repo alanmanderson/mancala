@@ -36,3 +36,40 @@ var isGameOverTestCases = []struct {
 		false,
 	},
 }
+
+var endGameTestCases = []struct {
+	description string
+	board       Board
+	expected    Board
+}{
+	{
+		"Test a game ends for P2",
+		Board{
+			[14]int{10, 4, 4, 4, 4, 4, 4, 2, 0, 0, 0, 0, 0, 0},
+			7,
+			0,
+			1,
+		},
+		Board{
+			[14]int{10, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0},
+			7,
+			0,
+			1,
+		},
+	},
+	{
+		"Test a game ends for P1",
+		Board{
+			[14]int{2, 0, 0, 0, 0, 0, 0, 10, 4, 4, 4, 4, 4, 4},
+			7,
+			0,
+			1,
+		},
+		Board{
+			[14]int{26, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0},
+			7,
+			0,
+			1,
+		},
+	},
+}
