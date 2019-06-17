@@ -40,7 +40,7 @@ func (b *Board) Move(pit int) error {
 	}
 	beads := b.pits[pit]
 	b.pits[pit] = 0
-	curPit := pit + 1
+	curPit := (pit + 1) % BoardSize
 	for beads > 0 {
 		if b.curPlayer == 1 && curPit == b.p2Pit || b.curPlayer == 2 && curPit == b.p1Pit {
 			curPit = (curPit + 1) % BoardSize
@@ -50,6 +50,9 @@ func (b *Board) Move(pit int) error {
 		curPit = (curPit + 1) % BoardSize
 		beads--
 	}
+	if b.IsGameOver() {
+		b.EndGame()
+	}
 	if b.curPlayer == 1 && curPit-1 == b.p1Pit {
 		return nil
 	}
@@ -57,9 +60,6 @@ func (b *Board) Move(pit int) error {
 		return nil
 	}
 	b.curPlayer = b.curPlayer%2 + 1
-	if b.IsGameOver() {
-		b.EndGame()
-	}
 	return nil
 }
 

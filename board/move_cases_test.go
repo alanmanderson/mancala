@@ -177,4 +177,21 @@ var moveTestCases = []struct {
 		},
 		nil,
 	},
+	{
+		"Test a player 2 move that ends the game",
+		Board{
+			[14]int{10, 0, 0, 0, 0, 0, 5, 20, 0, 0, 0, 0, 0, 1},
+			7,
+			0,
+			2,
+		},
+		13,
+		Board{
+			[14]int{11, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0},
+			7,
+			0,
+			2,
+		},
+		nil,
+	},
 }

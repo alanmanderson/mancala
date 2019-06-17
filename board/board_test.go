@@ -28,7 +28,7 @@ func TestMove(t *testing.T) {
 		}
 		if !testCase.board.isEqual(testCase.expected) {
 			t.Fatalf("FAIL: %s\nExpected: %v\nActual: %v",
-				testCase.description, testCase.board, testCase.expected)
+				testCase.description, testCase.expected, testCase.board)
 		}
 		t.Logf("PASS: %s", testCase.description)
 	}
