@@ -57,6 +57,9 @@ func (b *Board) Move(pit int) error {
 		return nil
 	}
 	b.curPlayer = b.curPlayer%2 + 1
+	if b.IsGameOver() {
+		b.EndGame()
+	}
 	return nil
 }
 
