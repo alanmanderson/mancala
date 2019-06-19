@@ -3,13 +3,15 @@ package main
 import (
 	"fmt"
 	"mancala/board"
+	"mancala/interactive"
 )
 
 func main() {
 	b := board.Board{}
 	b.Init()
+	interactive.Main()
 	fmt.Println(b.Print())
-	//fmt.Println("%+v", b)
+	fmt.Println("%+v", b)
 	b.Move(3)
 	fmt.Println(b.Print())
 	//fmt.Println("%+v", b)
