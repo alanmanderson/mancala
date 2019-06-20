@@ -1,8 +1,9 @@
 package interactive
 
 import (
+	"fmt"
 	"github.com/abiosoft/ishell"
-	"strings"
+	"strconv"
 )
 
 // Main does stuff
@@ -16,10 +17,15 @@ func Main() {
 
 	// register a function for "greet" command.
 	shell.AddCmd(&ishell.Cmd{
-		Name: "greet",
-		Help: "greet user",
+		Name: "play",
+		Help: "play <pit> plays from that pit",
 		Func: func(c *ishell.Context) {
-			c.Println("Hello", strings.Join(c.Args, " "))
+			if len(c.Args) != 1 {
+				fmt.Println("Invalid number of arguments")
+				return
+			}
+			selectedPit, _ := strconv.Atoi(c.Args[0])
+			c.Println("Hello " + fmt.Sprintf("%d", selectedPit))
 		},
 	})
 
